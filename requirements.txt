@@ -1,0 +1,9 @@
+openai-whisper
+librosa
+soundfile
+transformers
+torch
+streamlit
+matplotlib
+numpy
+nltk
