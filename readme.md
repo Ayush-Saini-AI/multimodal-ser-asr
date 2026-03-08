@@ -5,7 +5,7 @@ Multimodal NLP pipeline that transcribes speech and detects emotion.
 ## Setup & Run
 
 ### 1. Clone the repo
-git clone https://github.com/yourusername/NLP_project.git
+git clone (https://github.com/Ayush-Saini-AI/multimodal-ser-asr)
 cd NLP_project
 
 ### 2. Create virtual environment
