@@ -1,8 +1,4 @@
-"""
-Emotion-Aware Speech Transcription — Streamlit Frontend
-Run with: streamlit run app.py
-Tested on: Windows, Python 3.9+, CPU only
-"""
+
 
 import streamlit as st
 import numpy as np
@@ -17,70 +13,23 @@ import re
 import warnings
 warnings.filterwarnings("ignore")
 
-# ── Page config (must be first Streamlit call) ────────────────────────────────
+# must be the first streamlit call
 st.set_page_config(
     page_title="Emotion-Aware Speech Analyzer",
-    page_icon="🎙️",
+    page_icon="", # set later
     layout="wide",
 )
 
-# ── Minimal clean CSS ─────────────────────────────────────────────────────────
-st.markdown("""
-<style>
-    .main { background-color: #f9fafb; }
-    .block-container { padding-top: 2rem; padding-bottom: 2rem; }
-    .metric-box {
-        background: white;
-        border-radius: 10px;
-        padding: 1rem 1.2rem;
-        border-left: 4px solid #4f8ef7;
-        margin-bottom: 0.8rem;
-        box-shadow: 0 1px 4px rgba(0,0,0,0.07);
-    }
-    .metric-box.red   { border-left-color: #ef4444; }
-    .metric-box.green { border-left-color: #22c55e; }
-    .metric-box.amber { border-left-color: #f59e0b; }
-    .metric-box.grey  { border-left-color: #9ca3af; }
-    .metric-label { font-size: 0.75rem; color: #6b7280; text-transform: uppercase; letter-spacing: 0.05em; }
-    .metric-value { font-size: 1.15rem; font-weight: 600; color: #111827; margin-top: 2px; }
-    .report-box {
-        background: #1e293b;
-        color: #e2e8f0;
-        border-radius: 10px;
-        padding: 1.4rem 1.6rem;
-        font-family: 'Courier New', monospace;
-        font-size: 0.85rem;
-        line-height: 1.7;
-        white-space: pre-wrap;
-    }
-    .insight-banner {
-        border-radius: 10px;
-        padding: 1rem 1.4rem;
-        font-size: 1rem;
-        font-weight: 500;
-        margin: 1rem 0;
-    }
-    .stButton > button {
-        background-color: #4f8ef7;
-        color: white;
-        border: none;
-        border-radius: 8px;
-        padding: 0.6rem 2rem;
-        font-size: 1rem;
-        font-weight: 600;
-        width: 100%;
-        cursor: pointer;
-    }
-    .stButton > button:hover { background-color: #3b7de8; }
-    h1 { color: #111827 !important; }
-    h2, h3 { color: #1f2937 !important; }
-</style>
-""", unsafe_allow_html=True)
+def load_css(file_name):
+    with open(file_name) as f:
+        st.markdown(f"<style> {f.read()} </style>", unsafe_allow_html=True)
+
+load_css("style.css")
 
 
-# ══════════════════════════════════════════════════════════════════════════════
-# MODEL LOADERS  (cached so they load only once per session)
-# ══════════════════════════════════════════════════════════════════════════════
+# -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+# Model loaders
+# -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
 @st.cache_resource(show_spinner=False)
 def load_whisper():
@@ -94,16 +43,17 @@ def load_sentiment_pipeline():
     return hf_pipeline(
         "sentiment-analysis",
         model="distilbert-base-uncased-finetuned-sst-2-english",
-        device=-1,   # CPU
+        device=-1,   # forced to run on cpu for now. set to device >= 0 when using gpu
     )
 
 
-# ══════════════════════════════════════════════════════════════════════════════
-# ANALYSIS FUNCTIONS
-# ══════════════════════════════════════════════════════════════════════════════
+# -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+# Analysis Functions
+# -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
+
+# upload bytes to temp file, use librosa for loading
 def load_audio(file_bytes, suffix):
-    """Write uploaded bytes to a temp file and load with librosa."""
     with tempfile.NamedTemporaryFile(delete=False, suffix=suffix) as tmp:
         tmp.write(file_bytes)
         tmp_path = tmp.name
@@ -113,8 +63,8 @@ def load_audio(file_bytes, suffix):
     return audio, sr
 
 
+# uses whisper tiny for the audio transcription
 def transcribe(audio, sr):
-    """Transcribe audio array using Whisper tiny."""
     with tempfile.NamedTemporaryFile(delete=False, suffix=".wav") as tmp:
         sf.write(tmp.name, audio, sr)
         tmp_path = tmp.name
@@ -130,12 +80,11 @@ def get_sentiment(text):
     return res["label"], res["score"]
 
 
+# returns dictionary of extracted acoustic features of audio
 def extract_acoustic(audio, sr):
-    """Extract all acoustic features. Returns a dict."""
-    # MFCC
-    mfccs = librosa.feature.mfcc(y=audio, sr=sr, n_mfcc=13)
+    mfccs = librosa.feature.mfcc(y=audio, sr=sr, n_mfcc=13) # MFCC features
 
-    # Pitch
+    # pitch features
     pitches, magnitudes = librosa.piptrack(y=audio, sr=sr, threshold=0.1)
     pitch_vals = []
     for t in range(pitches.shape[1]):
@@ -147,19 +96,16 @@ def extract_acoustic(audio, sr):
                 pitch_vals.append(p)
     pitch_vals = np.array(pitch_vals) if pitch_vals else np.array([0.0])
 
-    # Energy
-    rms = librosa.feature.rms(y=audio)[0]
+    rms = librosa.feature.rms(y=audio)[0] # energy features
 
-    # Tempo
+    # tempo feature
     tempo_result = librosa.beat.beat_track(y=audio, sr=sr)
     tempo = tempo_result[0]
     tempo_val = float(np.mean(tempo)) if hasattr(tempo, "__len__") else float(tempo)
 
-    # ZCR
-    zcr = librosa.feature.zero_crossing_rate(audio)[0]
+    zcr = librosa.feature.zero_crossing_rate(audio)[0] # zcr feature
 
-    # Spectral centroid
-    spec_centroid = librosa.feature.spectral_centroid(y=audio, sr=sr)[0]
+    spec_centroid = librosa.feature.spectral_centroid(y=audio, sr=sr)[0] # spectral centroid features
 
     return {
         "mfccs":        mfccs,
@@ -177,9 +123,8 @@ def extract_acoustic(audio, sr):
         "spec_cent_mean": float(np.mean(spec_centroid)),
     }
 
-
+# insight generated using threshold rules
 def generate_insight(feat, sentiment_label, sentiment_score, transcript):
-    """Rule-based fusion insight engine."""
     flags, details = [], []
 
     energy = feat["energy_mean"]
@@ -222,12 +167,12 @@ def generate_insight(feat, sentiment_label, sentiment_score, transcript):
     # Final category
     if "FRUSTRATION_KEYWORDS" in flags or (valence == "NEGATIVE" and arousal == "HIGH"):
         emotion   = "FRUSTRATION / ANGER"
-        insight   = "Speaker appears frustrated or angry — potential escalation risk."
+        insight   = "Speaker appears frustrated or angry - potential escalation risk."
         color     = "red"
         emoji     = "⚠️"
     elif conflict:
         emotion   = "POSSIBLE SARCASM"
-        insight   = "Sentiment-acoustic conflict detected — speaker may be sarcastic."
+        insight   = "Sentiment-acoustic conflict detected - speaker may be sarcastic."
         color     = "amber"
         emoji     = "🔍"
     elif valence == "POSITIVE" and arousal == "HIGH":
@@ -247,7 +192,7 @@ def generate_insight(feat, sentiment_label, sentiment_score, transcript):
         emoji     = "ℹ️"
     else:
         emotion   = "NEUTRAL"
-        insight   = "No strong emotion detected — tone appears neutral."
+        insight   = "No strong emotion detected - tone appears neutral."
         color     = "grey"
         emoji     = "ℹ️"
 
@@ -259,9 +204,9 @@ def generate_insight(feat, sentiment_label, sentiment_score, transcript):
     }
 
 
-# ══════════════════════════════════════════════════════════════════════════════
-# PLOT BUILDERS
-# ══════════════════════════════════════════════════════════════════════════════
+# -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+# plotting functions
+# -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
 def plot_waveform_mfcc(audio, sr, feat):
     fig = plt.figure(figsize=(14, 7))
@@ -271,7 +216,7 @@ def plot_waveform_mfcc(audio, sr, feat):
     duration  = librosa.get_duration(y=audio, sr=sr)
     time_axis = np.linspace(0, duration, len(audio))
 
-    # Waveform
+    # waveform
     ax1 = fig.add_subplot(gs[0, :])
     ax1.plot(time_axis, audio, color="#4f8ef7", linewidth=0.6, alpha=0.85)
     ax1.fill_between(time_axis, audio, alpha=0.12, color="#4f8ef7")
@@ -325,9 +270,9 @@ def plot_sentiment_bar(label, score):
     return fig
 
 
-# ══════════════════════════════════════════════════════════════════════════════
-# FINAL REPORT STRING
-# ══════════════════════════════════════════════════════════════════════════════
+# -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
+# Final report functions
+# -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
 def build_report(transcript, sentiment_label, sentiment_score,
                  feat, ins):
@@ -336,22 +281,19 @@ def build_report(transcript, sentiment_label, sentiment_score,
     emoji = "😊" if sentiment_label == "POSITIVE" else "😠"
     flags_str = "\n".join(f"  ⚠  {f}" for f in ins["flags"]) if ins["flags"] else "  ✅  None"
 
-    return f"""{div}
-  🎙️  EMOTION-AWARE SPEECH ANALYSIS REPORT
-  Multimodal Fusion Pipeline — Review 1
-{div}
+    return f"""
 
-📝 TRANSCRIPTION
+Transcription: 
 {thin}
   {transcript}
 
-🧠 SENTIMENT  (DistilBERT)
+Sentiment  (DistilBERT): 
 {thin}
   Label      : {emoji} {sentiment_label}
   Confidence : {sentiment_score:.4f}  ({sentiment_score*100:.1f}%)
   Valence    : {ins["valence"]}
 
-🔬 ACOUSTIC FEATURES  (librosa)
+Acoustic Features  (librosa): 
 {thin}
   Pitch (F0)   : {feat["pitch_mean"]:.1f} Hz  (std: {feat["pitch_std"]:.1f}, range: {feat["pitch_range"]:.1f})
   RMS Energy   : {feat["energy_mean"]:.5f}  (max: {feat["energy_max"]:.5f})
@@ -360,138 +302,115 @@ def build_report(transcript, sentiment_label, sentiment_score,
   ZCR          : {feat["zcr_mean"]:.5f}
   Arousal      : {ins["arousal"]}
 
-⚑  SYSTEM FLAGS
+SYSTEM FLAGS: 
 {thin}
 {flags_str}
 
-💡 AI INSIGHT  (Rule-Based Fusion)
+Insight Generated  (Rule-Based Fusion):
 {thin}
   Emotion  : {ins["emotion"]}
   Evidence : {" | ".join(ins["details"]) if ins["details"] else "Standard baseline"}
 
-  ➤  {ins["emoji"]}  {ins["insight"]}
+  => {ins["emoji"]}  {ins["insight"]}
 
 {div}
-  ✅  Pipeline Complete — Review 1 Milestone
 {div}"""
 
 
-# ══════════════════════════════════════════════════════════════════════════════
+# -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 # UI LAYOUT
-# ══════════════════════════════════════════════════════════════════════════════
+# -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 
-st.title("🎙️ Emotion-Aware Speech Transcription")
-st.caption("Multimodal Fusion Pipeline — Review 1 Demo | NLP Project")
-st.markdown("---")
+st.title("Emotion-Aware Speech Analysis")
 
-# ── Sidebar ───────────────────────────────────────────────────────────────────
+# sidebar
 with st.sidebar:
-    st.markdown("### ℹ️ About")
+    st.header("About the Project")
     st.markdown("""
-This app demonstrates a **multimodal speech analysis pipeline**:
+    This multimodal pipeline analyzes speech by fusing text sentiment with acoustic data.
 
-- **Whisper tiny** → Speech to Text
-- **DistilBERT** → Sentiment Analysis
-- **librosa** → Acoustic Features
-- **Rule-based Fusion** → AI Insight
+    - Whisper (ASR)
+    - DistilBERT (Sentiment)
+    - librosa (Acoustics)
+    """)
 
-**For Review 1** — unimodal pipelines  
-**For Review 2** — neural fusion layer
-""")
-    st.markdown("---")
-    st.markdown("### 📋 Pipeline Steps")
-    steps = [
-        "1. Upload Audio",
-        "2. Load + Preprocess",
-        "3. Whisper Transcription",
-        "4. Text Sentiment",
-        "5. Acoustic Features",
-        "6. AI Insight Fusion",
-        "7. Final Report",
-    ]
-    for s in steps:
-        st.markdown(f"- {s}")
-    st.markdown("---")
-    st.markdown("### ⏱️ Est. Time")
+    st.divider()
+
+    st.subheader("How it Works")
     st.markdown("""
-| Step | Time |
-|---|---|
-| First model load | ~3 min |
-| Transcription | ~60–90s |
-| Sentiment | ~15s |
-| Features | ~10s |
-""")
+    Once you click Analyze Audio, the system will:
+    1. Process: Load and normalize audio.
+    2. Transcribe: Convert speech to text.
+    3. Analyze: Run sentiment and extract features (Pitch, Energy, Tempo).
+    4. Fuse: Combine results for an AI Insight.
+    5. Report: Generate visualizations and a summary.
+    """)
 
-# ── Main: Upload ──────────────────────────────────────────────────────────────
-col_left, col_right = st.columns([1, 1], gap="large")
+    st.divider()
 
-with col_left:
-    st.subheader("📂 Step 1 — Upload Audio")
+    st.subheader("Performance")
+    st.markdown("""
+    | Phase | Est. Time |
+    | :--- | :--- |
+    | First Run | ~3-4 min (Downloads) |
+    | Subsequent | ~1-2 min |
+    | Transcription | ~60-90s |
+    | Analytics | ~20s |
+    """)
+
+    st.caption("Note: Performance depends on CPU speed and audio length.")
+
+# MAIN
+# UPLOAD
+
+_, center_col, _ = st.columns([1, 3, 1])
+
+with center_col:
     uploaded = st.file_uploader(
         "Upload a .wav or .mp3 file",
         type=["wav", "mp3"],
-        help="Record yourself speaking 1–2 sentences for the best demo output."
+        help="Record yourself speaking 1-2 sentences for the best demo output."
     )
-    st.caption("💡 Tip: Record an angry or frustrated sentence for the most interesting results.")
 
-    analyze_btn = st.button("▶  Analyze Audio", disabled=(uploaded is None))
+    analyze_btn = st.button("Analyze Audio", disabled=(uploaded is None))
 
-with col_right:
-    st.subheader("📌 What to expect")
-    st.markdown("""
-After clicking **Analyze Audio**, the app will:
-1. Load and normalize your audio
-2. Transcribe it with Whisper
-3. Run sentiment analysis
-4. Extract pitch, energy, tempo
-5. Generate an AI insight
-6. Show plots + final report
-
-**First run:** ~3–4 min (model downloads)  
-**Subsequent runs:** ~1–2 min (models cached)
-""")
-
-st.markdown("---")
-
-# ── Analysis ─────────────────────────────────────────────────────────────────
+# Analysis
 if analyze_btn and uploaded is not None:
 
     file_bytes = uploaded.read()
     suffix     = ".wav" if uploaded.name.endswith(".wav") else ".mp3"
 
-    # ── Step 1: Load audio ────────────────────────────────────────────────────
+    # 1. load audio
     with st.spinner("Loading and preprocessing audio..."):
         audio, sr = load_audio(file_bytes, suffix)
         duration  = librosa.get_duration(y=audio, sr=sr)
 
-    st.success(f"✅ Audio loaded — {duration:.1f}s at {sr}Hz")
+    st.success(f"Audio loaded - {duration:.1f}s at {sr}Hz")
 
-    # ── Step 2: Transcribe ────────────────────────────────────────────────────
-    with st.spinner("Transcribing with Whisper tiny... (may take 60–90s on first run)"):
+    # 2. get transcription
+    with st.spinner("Transcribing with Whisper tiny..."):
         transcript = transcribe(audio, sr)
 
     if not transcript:
         transcript = "I am really frustrated with this service. Nothing seems to work."
-        st.warning("⚠️ No speech detected — using demo transcript for pipeline illustration.")
+        st.warning("No speech detected. Using demo transcript for pipeline illustration.")
 
-    st.markdown("### 📝 Transcript")
+    st.markdown("Transcript")
     st.info(f'"{transcript}"')
 
-    # ── Step 3: Sentiment ─────────────────────────────────────────────────────
+    # 3. sentiment analysis
     with st.spinner("Running DistilBERT sentiment analysis..."):
         sent_label, sent_score = get_sentiment(transcript)
 
-    # ── Step 4: Acoustic features ─────────────────────────────────────────────
+    # 4. extract acoustic features
     with st.spinner("Extracting acoustic features (MFCC, pitch, energy, tempo)..."):
         feat = extract_acoustic(audio, sr)
 
     # ── Step 5: Insight ───────────────────────────────────────────────────────
     ins = generate_insight(feat, sent_label, sent_score, transcript)
 
-    st.markdown("---")
-
-    # ── Results row 1: Metrics ────────────────────────────────────────────────
-    st.subheader("📊 Results")
+    # RESULTS
+    st.subheader("Results")
 
     m1, m2, m3, m4 = st.columns(4)
 
@@ -523,7 +442,7 @@ if analyze_btn and uploaded is not None:
   <div class="metric-value">{ins['emoji']} {ins['emotion']}</div>
 </div>""", unsafe_allow_html=True)
 
-    # ── Insight banner ────────────────────────────────────────────────────────
+    # insight banner
     banner_colors = {
         "red":   ("🔴", "#fef2f2", "#991b1b"),
         "green": ("🟢", "#f0fdf4", "#166534"),
@@ -533,28 +452,27 @@ if analyze_btn and uploaded is not None:
     _, bg, fg = banner_colors.get(ins["color"], banner_colors["grey"])
     st.markdown(f"""
 <div class="insight-banner" style="background:{bg}; color:{fg}; border: 1px solid {fg}33;">
-  <strong>💡 AI Insight:</strong> {ins['emoji']} {ins['insight']}
+  <strong> Insight:</strong> {ins['emoji']} {ins['insight']}
 </div>""", unsafe_allow_html=True)
 
     if ins["flags"]:
-        st.markdown(f"**⚑ Flags:** `{'` · `'.join(ins['flags'])}`")
+        st.markdown(f"**Flags:** `{'` · `'.join(ins['flags'])}`")
 
-    st.markdown("---")
 
-    # ── Plots ─────────────────────────────────────────────────────────────────
-    st.subheader("📈 Waveform + MFCC + Energy")
+    # plots
+    st.subheader("Waveform + MFCC + Energy")
     fig_main = plot_waveform_mfcc(audio, sr, feat)
     st.pyplot(fig_main, use_container_width=True)
     plt.close(fig_main)
 
-    st.subheader("🧠 Sentiment Confidence")
+    st.subheader("Sentiment Confidence")
     fig_sent = plot_sentiment_bar(sent_label, sent_score)
     st.pyplot(fig_sent, use_container_width=True)
     plt.close(fig_sent)
 
-    # ── Acoustic feature table ────────────────────────────────────────────────
-    st.subheader("🔬 Acoustic Feature Summary")
-    c1, c2 = st.columns(2)
+    # acoustic features table
+    st.subheader("Acoustic Feature Summary")
+    _, c1, c2, _ = st.columns([1, 2, 2, 1])
     with c1:
         st.metric("Pitch Mean (F0)", f"{feat['pitch_mean']:.1f} Hz")
         st.metric("RMS Energy Mean", f"{feat['energy_mean']:.5f}")
@@ -564,25 +482,15 @@ if analyze_btn and uploaded is not None:
         st.metric("Spectral Centroid", f"{feat['spec_cent_mean']:.1f} Hz")
         st.metric("Zero Crossing Rate", f"{feat['zcr_mean']:.5f}")
 
-    st.markdown("---")
-
-    # ── Final Report ──────────────────────────────────────────────────────────
-    st.subheader("📋 Final Report")
+    # FINAL REPORT
+    st.subheader("Final Report")
     report = build_report(transcript, sent_label, sent_score, feat, ins)
     st.markdown(f'<div class="report-box">{report}</div>', unsafe_allow_html=True)
 
-    # Download button
+    # download button
     st.download_button(
-        label="⬇️  Download Report as .txt",
+        label="Download Report as .txt",
         data=report,
         file_name="emotion_speech_report.txt",
         mime="text/plain",
     )
-
-elif not analyze_btn:
-    st.markdown("""
-<div style="text-align:center; padding: 3rem; color: #9ca3af;">
-  <div style="font-size: 3rem;">🎙️</div>
-  <div style="font-size: 1.1rem; margin-top: 0.5rem;">Upload an audio file and click <strong>Analyze Audio</strong> to begin</div>
-</div>
-""", unsafe_allow_html=True)
