@@ -123,10 +123,34 @@ def extract_acoustic(audio, sr):
         "spec_cent_mean": float(np.mean(spec_centroid)),
     }
 
-# insight generated using threshold rules
-def generate_insight(feat, sentiment_label, sentiment_score, transcript):
-    flags, details = [], []
 
+# -_-_-_-_ new code
+
+# lightweight rf classifier on meld benchmark data
+@st.cache_resource(show_spinner=False)
+def load_fusion_model():
+    from sklearn.ensemble import RandomForestClassifier
+    import pandas as pd
+
+    df = pd.read_csv("real_features.csv")
+    X = df[["sentiment_score", "pitch_mean", "energy_mean", "tempo"]].values
+    y = df["emotion"].values
+
+    clf = RandomForestClassifier(n_estimators=100, max_depth=5, random_state=42)
+    clf.fit(X, y)
+
+    return clf
+
+
+#  insight engine with retained acoustic/lexical explainability flags
+def generate_insight(feat, sentiment_label, sentiment_score, transcript):
+
+    import numpy as np
+
+    flags = []
+    details = ["Late Fusion MLP Classifier"]
+
+    # retain acoustic and lexical analysis
     energy = feat["energy_mean"]
     arousal = "HIGH" if energy > 0.05 else ("MEDIUM" if energy > 0.02 else "LOW")
     if arousal == "HIGH":
@@ -152,57 +176,73 @@ def generate_insight(feat, sentiment_label, sentiment_score, transcript):
 
     valence = "POSITIVE" if sentiment_label == "POSITIVE" else "NEGATIVE"
 
+    # sarcasm conflict handling
     conflict = (valence == "POSITIVE" and arousal == "HIGH"
                 and sentiment_score < 0.80 and "ELEVATED_PITCH" in flags)
     if conflict:
         flags.append("SENTIMENT_ACOUSTIC_CONFLICT")
 
-    frustration_kw = ["frustrated","angry","terrible","awful","useless",
-                      "horrible","worst","broken","nothing","never","stupid"]
+    # lexical keyword hits
+    frustration_kw = ["frustrated", "angry", "terrible", "awful", "useless",
+                      "horrible", "worst", "broken", "nothing", "never", "stupid"]
     hits = [w for w in frustration_kw if w in transcript.lower()]
     if hits:
         flags.append("FRUSTRATION_KEYWORDS")
         details.append(f"frustration keywords: {hits}")
 
-    # Final category
-    if "FRUSTRATION_KEYWORDS" in flags or (valence == "NEGATIVE" and arousal == "HIGH"):
-        emotion   = "FRUSTRATION / ANGER"
-        insight   = "Speaker appears frustrated or angry - potential escalation risk."
-        color     = "red"
-        emoji     = "⚠️"
-    elif conflict:
-        emotion   = "POSSIBLE SARCASM"
-        insight   = "Sentiment-acoustic conflict detected - speaker may be sarcastic."
-        color     = "amber"
-        emoji     = "🔍"
-    elif valence == "POSITIVE" and arousal == "HIGH":
-        emotion   = "ENTHUSIASM"
-        insight   = "Speaker sounds enthusiastic and engaged."
-        color     = "green"
-        emoji     = "✅"
-    elif valence == "POSITIVE" and arousal == "LOW":
-        emotion   = "CALM SATISFACTION"
-        insight   = "Speaker appears calm and satisfied."
-        color     = "green"
-        emoji     = "✅"
-    elif valence == "NEGATIVE" and arousal == "LOW":
-        emotion   = "DISAPPOINTMENT"
-        insight   = "Speaker sounds disappointed or disengaged."
-        color     = "amber"
-        emoji     = "ℹ️"
-    else:
-        emotion   = "NEUTRAL"
-        insight   = "No strong emotion detected - tone appears neutral."
-        color     = "grey"
-        emoji     = "ℹ️"
+    # RF
+    score_val = sentiment_score if sentiment_label == "POSITIVE" else (1.0 - sentiment_score)
+    clf = load_fusion_model()
+    x_input = np.array([[score_val, feat["pitch_mean"], feat["energy_mean"], feat["tempo"]]])
+    emotion = clf.predict(x_input)[0]
 
-    return {
-        "emotion": emotion, "insight": insight,
-        "color": color, "emoji": emoji,
-        "arousal": arousal, "valence": valence,
-        "flags": flags, "details": details,
+    if emotion == "ANGER":
+        emotion = "FRUSTRATION / ANGER"
+    elif emotion == "JOY":
+        emotion = "ENTHUSIASM"
+    elif emotion == "SADNESS":
+        emotion = "DISAPPOINTMENT"
+
+    # --- THE FAILSAFE ---
+    # failsafe - if distillibert is >90% confident it is positive, prefer that over noisy model
+    if sentiment_score > 0.90 and sentiment_label == "POSITIVE" and emotion in ["FRUSTRATION / ANGER",
+                                                                                "DISAPPOINTMENT"]:
+        emotion = "ENTHUSIASM" if arousal == "HIGH" else "CALM SATISFACTION"
+        flags.append("TEXT_OVERRIDE")
+        details.append("Acoustics overridden by >90% positive text sentiment")
+    # --------------------
+
+    # map visual UI components
+    ui_map = {
+        "FRUSTRATION / ANGER": {"insight": "High energy + negative sentiment. Escalation risk.", "color": "red",
+                                "emoji": "⚠️"},
+        "ENTHUSIASM": {"insight": "High energy + positive sentiment. Highly engaged.", "color": "green", "emoji": "🔥"},
+        "CALM SATISFACTION": {"insight": "Low energy + positive sentiment. Calmly satisfied.", "color": "green",
+                              "emoji": "✅"},
+        "DISAPPOINTMENT": {"insight": "Speaker sounds disappointed or disengaged.", "color": "amber", "emoji": "ℹ️"},
+        "NEUTRAL": {"insight": "Mid-range acoustics + neutral sentiment.", "color": "grey", "emoji": "ℹ️"}
     }
 
+    # sarcasm handling
+    if conflict and emotion not in ["FRUSTRATION / ANGER", "DISAPPOINTMENT"]:
+        emotion = "POSSIBLE SARCASM"
+        mapping = {"insight": "Sentiment-acoustic conflict detected - speaker may be sarcastic.", "color": "amber",
+                   "emoji": "🔍"}
+    else:
+        mapping = ui_map.get(emotion, ui_map["NEUTRAL"])
+
+    return {
+        "emotion": emotion,
+        "insight": mapping["insight"],
+        "color": mapping["color"],
+        "emoji": mapping["emoji"],
+        "arousal": arousal,
+        "valence": valence,
+        "flags": flags,
+        "details": details
+    }
+
+# -_-_-_-_ end of new code
 
 # -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- -- --
 # plotting functions
@@ -306,7 +346,7 @@ SYSTEM FLAGS:
 {thin}
 {flags_str}
 
-Insight Generated  (Rule-Based Fusion):
+Insight Generated:
 {thin}
   Emotion  : {ins["emotion"]}
   Evidence : {" | ".join(ins["details"]) if ins["details"] else "Standard baseline"}
