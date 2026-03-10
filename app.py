@@ -311,7 +311,7 @@ Insight Generated  (Rule-Based Fusion):
   Emotion  : {ins["emotion"]}
   Evidence : {" | ".join(ins["details"]) if ins["details"] else "Standard baseline"}
 
-  => {ins["emoji"]}  {ins["insight"]}
+  {ins["emoji"]}  {ins["insight"]}
 
 {div}
 {div}"""
