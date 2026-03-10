@@ -1,0 +1,80 @@
+    .main { background-color: #f9fafb; }
+    .block-container { padding-top: 2rem; padding-bottom: 2rem; }
+    .metric-box {
+        background: white;
+        border-radius: 10px;
+        padding: 1rem 1.2rem;
+        border-left: 4px solid #4f8ef7;
+        margin-bottom: 0.8rem;
+        box-shadow: 0 1px 4px rgba(0,0,0,0.07);
+    }
+    .metric-box.red   { border-left-color: #ef4444; }
+    .metric-box.green { border-left-color: #22c55e; }
+    .metric-box.amber { border-left-color: #f59e0b; }
+    .metric-box.grey  { border-left-color: #9ca3af; }
+    .metric-label { font-size: 0.75rem; color: #6b7280; text-transform: uppercase; letter-spacing: 0.05em; }
+    .metric-value { font-size: 1.15rem; font-weight: 600; color: #111827; margin-top: 2px; }
+    .report-box {
+        background: #1e293b;
+        color: #e2e8f0;
+        border-radius: 10px;
+        padding: 1.4rem 1.6rem;
+        font-family: 'Courier New', monospace;
+        font-size: 0.85rem;
+        line-height: 1.7;
+        white-space: pre-wrap;
+    }
+    .insight-banner {
+        border-radius: 10px;
+        padding: 1rem 1.4rem;
+        font-size: 1rem;
+        font-weight: 500;
+        margin: 1rem 0;
+    }
+    .stButton > button {
+        background-color: #4f8ef7;
+        color: white;
+        border: 1px solid #4f8ef7 !important;
+        border-radius: 8px;
+        padding: 0.6rem 2rem;
+        font-weight: 600;
+        width: 100%;
+    }
+
+    .stButton > button:disabled {
+        background-color: transparent !important;
+        color: #94a3b8 !important;
+        border: 1px solid #475569 !important;
+        opacity: 1 !important;
+        cursor: not-allowed;
+    }
+
+    .stButton > button:disabled:hover {
+        border-color: #64748b !important;
+        color: #cbd5e1 !important;
+    }
+    .stButton > button:hover { background-color: #3b7de8; }
+    h1 { color: #f8fafc !important; text-align: center; }
+    h2, h3 { color: #f1f5f9 !important; text-align: center; }
+    .stMarkdown p { color: #e2e8f0 !important; text-align: center; }
+    .stCaption { color: #94a3b8 !important; text-align: center; }
+
+    [data-testid="stFileUploader"] {
+        text-align: center;
+    }
+
+    [data-testid="stMetric"] {
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    [data-testid="stMetric"] {
+        background: rgba(255, 255, 255, 0.05);
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    /* a */

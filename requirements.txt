@@ -7,3 +7,5 @@ streamlit
 matplotlib
 numpy
 nltk
+pandas
+scikit-learn
