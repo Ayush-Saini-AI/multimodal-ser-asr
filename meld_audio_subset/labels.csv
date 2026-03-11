@@ -1,0 +1,201 @@
+Sr No.,Utterance,Speaker,Emotion,Sentiment,Dialogue_ID,Utterance_ID,Season,Episode,StartTime,EndTime,filename
+1,also I was the point person on my companys transition from the KL-5 to GR-6 system.,Chandler,neutral,neutral,0,0,8,21,"00:16:16,059","00:16:21,731",dia0_utt0.wav
+2,You mustve had your hands full.,The Interviewer,neutral,neutral,0,1,8,21,"00:16:21,940","00:16:23,442",dia0_utt1.wav
+3,That I did. That I did.,Chandler,neutral,neutral,0,2,8,21,"00:16:23,442","00:16:26,389",dia0_utt2.wav
+4,So lets talk a little bit about your duties.,The Interviewer,neutral,neutral,0,3,8,21,"00:16:26,820","00:16:29,572",dia0_utt3.wav
+6,"Now youll be heading a whole division, so youll have a lot of duties.",The Interviewer,neutral,neutral,0,5,8,21,"00:16:41,126","00:16:44,337",dia0_utt5.wav
+7,I see.,Chandler,neutral,neutral,0,6,8,21,"00:16:48,800","00:16:51,886",dia0_utt6.wav
+8,But therell be perhaps 30 people under you so you can dump a certain amount on them.,The Interviewer,neutral,neutral,0,7,8,21,"00:16:48,800","00:16:54,514",dia0_utt7.wav
+9,Good to know.,Chandler,neutral,neutral,0,8,8,21,"00:16:59,477","00:17:00,478",dia0_utt8.wav
+10,We can go into detail,The Interviewer,neutral,neutral,0,9,8,21,"00:17:00,478","00:17:02,719",dia0_utt9.wav
+12,"All right then, well have a definite answer for you on Monday, but I think I can say with some confidence, youll fit in well here.",The Interviewer,neutral,neutral,0,11,8,21,"00:17:05,025","00:17:13,324",dia0_utt11.wav
+14,Absolutely.  You can relax,The Interviewer,neutral,neutral,0,13,8,21,"00:17:17,579","00:17:20,707",dia0_utt13.wav
+19,Ok!,Joey,neutral,neutral,1,4,9,23,"00:36:52,376","00:36:53,543",dia1_utt4.wav
+20,"All right, well...",Joey,neutral,neutral,1,5,9,23,"00:36:53,545","00:36:55,000",dia1_utt5.wav
+23,"Yeah, sure!",Rachel,neutral,neutral,1,8,9,23,"0:36:59,425","0:37:01,439",dia1_utt8.wav
+24,"Hey, Mon.",Chandler,neutral,neutral,2,0,3,6,"00:05:50,350","00:05:51,433",dia2_utt0.wav
+25,Hey-hey-hey. You wanna hear something that sucks.,Monica,neutral,neutral,2,1,3,6,"0:05:52,435","0:05:53,897",dia2_utt1.wav
+29,"Yeah, apparently theyre turning it into some kinda coffee place.",Monica,neutral,neutral,2,5,3,6,"00:05:59,942","00:06:02,152",dia2_utt5.wav
+32,Can I get a beer.,Chandler,neutral,neutral,2,8,3,6,"0:06:07,367","0:06:08,035",dia2_utt8.wav
+33,"Hey, did you pick a roommate?",Monica,neutral,neutral,2,9,3,6,"0:06:08,035","0:06:10,019",dia2_utt9.wav
+35,Is it the Italian guy?,Monica,neutral,neutral,2,11,3,6,"0:06:10,973","0:06:12,167",dia2_utt11.wav
+40,He was with her when he wrote this poem.,Phoebe,neutral,neutral,3,3,3,12,"00:10:21,078","00:10:23,496",dia3_utt3.wav
+41,"Look,  'My vessel so empty with nothing inside.",Phoebe,neutral,neutral,3,4,3,12,"00:10:23,664","00:10:26,499",dia3_utt4.wav
+42,"Now that I've touched you, you seem emptier still.'",Phoebe,neutral,neutral,3,5,3,12,"00:10:26,667","00:10:29,586",dia3_utt5.wav
+46,Done.,Joey,neutral,neutral,3,9,3,12,"00:10:39,680","00:10:41,181",dia3_utt9.wav
+50,"Ah y'know, this building is on my paper route so I...",Ross,neutral,neutral,4,3,3,11,"00:20:26,433","00:20:29,185",dia4_utt3.wav
+51,Oh.,Rachel,neutral,neutral,4,4,3,11,"0:20:29,394","0:20:30,771",dia4_utt4.wav
+52,Hi.,Ross,neutral,neutral,4,5,3,11,"0:20:30,771","0:20:30,873",dia4_utt5.wav
+53,Hi.,Rachel,neutral,neutral,4,6,3,11,"0:20:30,873","0:20:31,135",dia4_utt6.wav
+54,Howd did it go?,Ross,neutral,neutral,4,7,3,11,"00:20:31,188","00:20:32,230",dia4_utt7.wav
+59,I know.,Rachel,neutral,neutral,4,12,3,11,"00:20:53,752","00:20:54,794",dia4_utt12.wav
+60,Yeah.,Ross,neutral,neutral,4,13,3,11,"0:20:54,962","0:20:55,380",dia4_utt13.wav
+61,Yeah.,Rachel,neutral,neutral,4,14,3,11,"0:20:55,380","0:20:56,057",dia4_utt14.wav
+62,Ameri-can.,Phoebe,neutral,neutral,5,0,3,15,"0:22:18,545","0:22:20,297",dia5_utt0.wav
+63,Ameri-ccan.,Joey,neutral,neutral,5,1,3,15,"0:22:20,297","0:22:20,476",dia5_utt1.wav
+64,Ameri-can. Y'know its a,Phoebe,neutral,neutral,5,2,3,15,"00:22:20,589","00:22:23,507",dia5_utt2.wav
+69,Which part exactly?,Joey,neutral,neutral,6,3,8,22,"0:12:31,655","0:12:33,657",dia6_utt3.wav
+70,The whole thing! Can we go?,Chandler,neutral,neutral,6,4,8,22,"0:12:33,657","0:12:36,243",dia6_utt4.wav
+73,"Hey, what about the scene with the kangaroo? Did-did you like that part?",Joey,neutral,neutral,6,7,8,22,"00:12:43,209","00:12:48,255",dia6_utt7.wav
+78,Thats for coming buddy.,Joey,neutral,neutral,6,12,8,22,"0:13:05,940","0:13:07,242",dia6_utt12.wav
+79,Ill see you later.,Joey,neutral,neutral,6,13,8,22,"0:13:07,242","0:13:08,202",dia6_utt13.wav
+88,"Okay, look, I think we have to tell Rachel she messed up her dessert.",Joey,neutral,neutral,7,0,6,9,"00:12:51,020","00:12:53,897",dia7_utt0.wav
+90,"Yes, and it is my dying wish to have that ring.",Phoebe,neutral,neutral,8,0,6,23,"00:19:17,865","00:19:21,951",dia8_utt0.wav
+91,"See, if Im not buried with that ring then my spirit is going to wander the nether world for all eternity",Phoebe,neutral,neutral,8,1,6,23,"00:19:17,865","00:19:25,204",dia8_utt1.wav
+92,"Okay, thats enough honey!",Chandler,neutral,neutral,8,2,6,23,"00:19:25,372","00:19:26,706",dia8_utt2.wav
+93,I dont know.  Let me see the ring.,Customer,neutral,neutral,8,3,6,23,"00:19:28,375","00:19:34,964",dia8_utt3.wav
+95,All right.,Customer,neutral,neutral,8,5,6,23,"0:19:37,342","0:19:39,934",dia8_utt5.wav
+97,What've you been up to?,Chandler,neutral,neutral,9,0,2,5,"00:01:51,903","00:01:54,738",dia9_utt0.wav
+98,"Oh, you know, the usual, teaching aerobics, partying way too much.",Jade,neutral,neutral,9,1,2,5,"00:01:54,948","00:02:01,203",dia9_utt1.wav
+99,"Oh, and in case you were wondering, those are my legs on the new James Bond poster.",Jade,neutral,neutral,9,2,2,5,"00:02:01,621","00:02:07,459",dia9_utt2.wav
+101,I know.,Ross,neutral,neutral,9,4,2,5,"00:02:13,091","00:02:14,758",dia9_utt4.wav
+26,Do I ever.,Chandler,joy,positive,2,2,3,6,"0:05:53,897","0:05:55,743",dia2_utt2.wav
+34,You betcha!,Chandler,joy,positive,2,10,3,6,"0:06:10,161","0:06:10,973",dia2_utt10.wav
+36,"Um-mm, yeah right!",Chandler,joy,positive,2,12,3,6,"00:06:12,288","00:06:13,497",dia2_utt12.wav
+48,Hi!,Ross,joy,positive,4,1,3,11,"0:20:24,891","0:20:25,028",dia4_utt1.wav
+55,"Oh well, the woman I interviewed with was pretty tough, but y'know thank God Mark coached me, because once I started talking about the fall line, she got all happy and wouldnt shut up.",Rachel,joy,positive,4,8,3,11,"00:20:32,397","00:20:40,446",dia4_utt8.wav
+56,Im so proud of you.,Ross,joy,positive,4,9,3,11,"0:20:40,614","0:20:41,991",dia4_utt9.wav
+57,Me too!,Rachel,joy,positive,4,10,3,11,"0:20:41,991","0:20:43,543",dia4_utt10.wav
+66,Good job Joe! Well done! Top notch!,Chandler,joy,positive,6,0,8,22,"00:12:24,315","00:12:27,526",dia6_utt0.wav
+68,"Oh-ho-ho, yeah!",Chandler,joy,positive,6,2,8,22,"0:12:29,796","0:12:31,501",dia6_utt2.wav
+72,"I love the specifics, the specifics were the best part!",Chandler,joy,positive,6,6,8,22,"00:12:38,954","00:12:43,000",dia6_utt6.wav
+94,"Great! Okay, here.",Chandler,joy,positive,8,4,6,23,"00:19:32,129","00:19:34,964",dia8_utt4.wav
+96,Thank you. Thank you. Thank you!  And,Chandler,joy,positive,8,6,6,23,"0:19:39,934","0:19:40,074",dia8_utt6.wav
+100,Can you hold on a moment? I have another call.  I love her.,Chandler,joy,positive,9,3,2,5,"00:02:10,547","00:02:14,758",dia9_utt3.wav
+106,Ok.  Ok. Having a phone has finally paid off.,Chandler,joy,positive,9,9,2,5,"00:02:32,318","00:02:34,528",dia9_utt9.wav
+120,Here you go Phoebe! Here you go Phobo! Phewbedo! Phaybobo.,Chandler,joy,positive,11,3,4,23,"00:03:22,869","00:03:25,704",dia11_utt3.wav
+123,"All right, lets go! Bye, Pheebs!",Ross,joy,positive,11,6,4,23,"00:03:32,503","00:03:34,463",dia11_utt6.wav
+124,"Bye, Pheebs!",Joey,joy,positive,11,7,4,23,"00:03:34,631","00:03:36,340",dia11_utt7.wav
+125,London baby!!,Joey,joy,positive,11,8,4,23,"00:03:40,803","00:03:42,554",dia11_utt8.wav
+126,"Oh, do you need a hug? You dont have to bring me anything!",Phoebe,joy,positive,11,9,4,23,"00:03:44,849","00:03:51,563",dia11_utt9.wav
+128,Hey! So Estelle lined up a bunch of auditions for me tomorrow and Ill have my health insurance back in no time.,Joey,joy,positive,12,1,6,4,"00:09:47,295","00:09:56,177",dia12_utt1.wav
+139,I love your place! Where is this guy from?,Mona,joy,positive,13,0,8,8,"00:10:36,844","00:10:40,930",dia13_utt0.wav
+164,Or we could throw you both in,Professore Clerk,joy,positive,15,15,9,23,"0:43:24,905","0:43:27,073",dia15_utt15.wav
+170,And most importantly I... you-you will have to catch us first.,Ross,joy,positive,15,21,9,23,"00:43:33,902","00:43:37,780",dia15_utt21.wav
+172,"GO, GO, GO!",Ross,joy,positive,15,22,9,23,"00:43:37,948","00:43:40,366",dia15_utt22.wav
+173,"Go, go, go!",Ross,joy,positive,16,0,3,25,"00:04:41,197","00:04:42,239",dia16_utt0.wav
+174,"Oh yeah, now everybody wants to be under this hat!",Rachel,joy,positive,16,1,3,25,"00:04:42,407","00:04:44,574",dia16_utt1.wav
+180,"Oh umm, my big scene is coming up. Big scene coming up.",Joey,joy,positive,17,1,5,19,"00:06:21,506","00:06:25,542",dia17_utt1.wav
+186,Pizza delivery!,Caitlin,joy,positive,17,7,5,19,"0:06:47,281","0:06:49,793",dia17_utt7.wav
+187,I'll get it! I will get that!,Ross,joy,positive,17,8,5,19,"0:06:49,793","0:06:50,887",dia17_utt8.wav
+188,Hi!,Caitlin,joy,positive,17,9,5,19,"0:06:53,538","0:06:54,665",dia17_utt9.wav
+189,Hi!,Ross,joy,positive,17,10,5,19,"0:06:54,665","0:06:54,803",dia17_utt10.wav
+193,"Hey Ross, wouldn't it be great if we could go two straight hours without dropping it?!",Joey,joy,positive,18,3,5,21,"00:05:14,022","00:05:19,109",dia18_utt3.wav
+195,Okay!,Joey,joy,positive,18,5,5,21,"00:05:23,489","00:05:24,990",dia18_utt5.wav
+204,"Oh, unbelievable! We had the best time!",Joey,joy,positive,20,1,7,7,"00:10:59,408","00:11:01,368",dia20_utt1.wav
+205,"Yay!! Oh so, youre not, youre not mad at us anymore?",Phoebe,joy,positive,20,2,7,7,"00:11:01,535","00:11:06,164",dia20_utt2.wav
+206,No!,Joey,joy,positive,20,3,7,7,"0:11:02,703","0:11:03,538",dia20_utt3.wav
+207,No!,Joey,joy,positive,20,4,7,7,"0:11:03,538","0:11:04,760",dia20_utt4.wav
+208,No!,Joey,joy,positive,20,5,7,7,"0:11:04,760","0:11:05,303",dia20_utt5.wav
+209,You guys were totally right!,Joey,joy,positive,20,6,7,7,"0:11:05,303","0:11:06,298",dia20_utt6.wav
+210,This is so much better than the first time we went out.,Joey,joy,positive,20,7,7,7,"00:11:06,374","00:11:08,625",dia20_utt7.wav
+215,And!,Joey,joy,positive,20,12,7,7,"0:11:16,801","0:11:18,595",dia20_utt12.wav
+216,We have so much in common!,Joey,joy,positive,20,13,7,7,"0:11:18,595","0:11:18,734",dia20_utt13.wav
+217,"She loves sandwiches, sports, although she is a Met fan, not much of an issue now but if we were ever to have kids, well thats a",Joey,joy,positive,20,14,7,7,"00:11:18,928","00:11:31,356",dia20_utt14.wav
+222,Would you look at her? She is so peaceful.,Monica,joy,positive,21,2,1,4,"00:01:54,989","00:02:00,994",dia21_utt2.wav
+233,Thanks.,Phoebe,joy,positive,21,13,1,4,"0:02:30,900","0:02:32,175",dia21_utt13.wav
+241,I mean thats unbelievable.,Rachel,joy,positive,23,3,3,11,"0:10:22,422","0:10:23,751",dia23_utt3.wav
+250,Pa-haa!! I would love to go with you.,Ross,joy,positive,24,3,3,14,"00:10:54,987","00:10:56,571",dia24_utt3.wav
+254,"Okay. Honey, I would love for you to go with me.  What?",Rachel,joy,positive,24,7,3,14,"00:11:11,379","00:11:15,256",dia24_utt7.wav
+256,": I know, we did it!! Hey, that was incredible, huh?!",Mr. Treeger,joy,positive,25,0,4,4,"00:20:36,693","00:20:40,321",dia25_utt0.wav
+257,"I know, it was amazing! I mean, we totally nailed it, it was beautiful.",Joey,joy,positive,25,1,4,4,"00:20:40,572","00:20:44,075",dia25_utt1.wav
+71,"Oh no-no-no, give me some specifics.",Joey,anger,negative,6,5,8,22,"00:12:36,368","00:12:38,746",dia6_utt5.wav
+75,You fell asleep!!,Joey,anger,negative,6,9,8,22,"00:12:55,930","00:12:56,931",dia6_utt9.wav
+76,There was no kangaroo!,Joey,anger,negative,6,10,8,22,"0:12:58,432","0:12:59,809",dia6_utt10.wav
+77,They didnt take any of my suggestions!,Joey,anger,negative,6,11,8,22,"0:12:59,809","0:13:03,196",dia6_utt11.wav
+84,This guy fell asleep!,Chandler,anger,negative,6,18,8,22,"0:13:11,407","0:13:12,589",dia6_utt18.wav
+85,He fell asleep too!,Chandler,anger,negative,6,19,8,22,"0:13:12,589","0:13:13,215",dia6_utt19.wav
+86,Be mad at him!,Chandler,anger,negative,6,20,8,22,"0:13:13,215","0:13:14,108",dia6_utt20.wav
+87,"Or, call an ambulance.",Chandler,anger,negative,6,21,8,22,"00:13:16,367","00:13:18,244",dia6_utt21.wav
+89,"What?! What is with everybody? Its Thanksgiving, not...Truth-Day!",Ross,anger,negative,7,1,6,9,"00:12:54,106","00:12:58,193",dia7_utt1.wav
+110,"Ok, pure evil , horny and alone . I've done this",Chandler,anger,negative,9,13,2,5,"00:02:56,634","00:03:05,058",dia9_utt13.wav
+111,Nobody!,Phoebe,anger,negative,10,0,5,10,"0:11:57,091","0:11:58,551",dia10_utt0.wav
+112,Nobody respects the bucket!,Phoebe,anger,negative,10,1,5,10,"0:11:58,551","0:11:59,947",dia10_utt1.wav
+113,You wouldn't believe what people put in here!,Phoebe,anger,negative,10,2,5,10,"00:12:00,553","00:12:02,721",dia10_utt2.wav
+114,Look!,Phoebe,anger,negative,10,3,5,10,"00:12:02,888","00:12:04,597",dia10_utt3.wav
+115,"Okay, does this look like a garbage can to you?",Phoebe,anger,negative,10,4,5,10,"00:12:02,888","00:12:07,016",dia10_utt4.wav
+118,"All right, yknow what? We really are late! Lets go! Lets go! Lets go!!",Monica,anger,negative,11,1,4,23,"00:03:13,318","00:03:16,737",dia11_utt1.wav
+138,Why did I have to start working out again?  Damn you 15s!,Joey,anger,negative,12,11,6,4,"00:10:36,177","00:10:41,556",dia12_utt11.wav
+149,Get Out!,Ross,anger,negative,15,0,9,23,"00:42:09,652","00:42:13,488",dia15_utt0.wav
+155,I knew that was him!,Ross,anger,negative,15,6,9,23,"00:42:42,059","00:42:44,561",dia15_utt6.wav
+165,"Ok, gentlemen!",Ross,anger,negative,15,16,9,23,"0:43:27,187","0:43:28,147",dia15_utt16.wav
+166,Please!,Ross,anger,negative,15,17,9,23,"0:43:28,147","0:43:28,699",dia15_utt17.wav
+167,Aren't we a little old for this?,Ross,anger,negative,15,18,9,23,"0:43:28,699","0:43:30,985",dia15_utt18.wav
+169,We're academics.,Ross,anger,negative,15,20,9,23,"0:43:32,788","0:43:33,798",dia15_utt20.wav
+179,"Okay, see that blind guy right there? I'm gonna bash his head in later.",Joey,anger,negative,17,0,5,19,"00:06:15,416","00:06:19,127",dia17_utt0.wav
+226,I got no sleep last night!,Phoebe,anger,negative,21,6,1,4,"0:02:08,294","0:02:09,587",dia21_utt6.wav
+239,Okay! You dont think I thought of that?,Chandler,anger,negative,23,1,3,11,"00:10:17,825","00:10:19,909",dia23_utt1.wav
+286,Please!,Ross,anger,negative,28,0,4,15,"0:19:16,989","0:19:19,201",dia28_utt0.wav
+287,Are you kidding?,Ross,anger,negative,28,1,4,15,"0:19:19,201","0:19:19,673",dia28_utt1.wav
+288,"I-I hurt three huge men, I gave a guy a bloody noseI mean I-Im not proud of it but, I really am.",Ross,anger,negative,28,2,4,15,"0:19:19,673","0:19:19,821",dia28_utt2.wav
+300,"Chandler, we have talked about this.",Monica,anger,negative,29,6,9,23,"00:08:54,575","00:08:56,952",dia29_utt6.wav
+301,You are not supposed to give people advice!,Monica,anger,negative,29,7,9,23,"00:08:57,119","00:08:59,871",dia29_utt7.wav
+302,Now couldn't you just have made some sort of inappropriate joke?,Monica,anger,negative,29,8,9,23,"00:09:01,541","00:09:04,209",dia29_utt8.wav
+304,They've only been going out for a few weeks and Phoebe is completely hung up on Mike!,Monica,anger,negative,29,10,9,23,"00:09:09,924","00:09:16,555",dia29_utt10.wav
+305,"She'll say ""No"", David's heart will be broken, it will be too hard for them to recover from and then Phoebe will end up alone",Monica,anger,negative,29,11,9,23,"00:09:16,722","00:09:26,356",dia29_utt11.wav
+312,"So Ross, what your problem?",Paul,anger,negative,30,4,6,21,"00:04:33,189","00:04:37,901",dia30_utt4.wav
+314,Why cant you get a girlfriend your own age?,Paul,anger,negative,30,6,6,21,"00:04:41,281","00:04:43,282",dia30_utt6.wav
+322,Okay. Ill give you one chance to change my mind.  You got one minute.,Paul,anger,negative,30,14,6,21,"00:05:03,594","00:05:09,057",dia30_utt14.wav
+341,"It's your moral obligation, as a friend, as a woman, I think it's a feminist issue!",Ross,anger,negative,32,12,1,12,"00:11:36,779","00:11:43,076",dia32_utt12.wav
+342,Guys?,Ross,anger,negative,32,13,1,12,"0:11:39,699","0:11:40,033",dia32_utt13.wav
+343,Guys?,Ross,anger,negative,32,14,1,12,"0:11:40,033","0:11:43,147",dia32_utt14.wav
+395,You kissed another woman!,Monica,anger,negative,38,0,8,2,"00:20:20,844","00:20:23,012",dia38_utt0.wav
+401,"Yeah, they think they can charge me for some dirty movie and a bag of Mashuga nuts, they got another think coming.",Ross,anger,negative,38,6,8,2,"00:20:37,611","00:20:45,743",dia38_utt6.wav
+407,Happy?! Is that what Im supposed to be Vic? Happy?,Kate,anger,negative,39,0,3,19,"00:11:00,868","00:11:03,912",dia39_utt0.wav
+408,"Well, why dont you tell me what youre supposed to be!",Joey,anger,negative,39,1,3,19,"0:11:05,623","0:11:07,515",dia39_utt1.wav
+410,Because I sure as hell cant figure it out!,Joey,anger,negative,39,3,3,19,"00:11:08,376","00:11:10,835",dia39_utt3.wav
+411,I talk to you and nothin.,Joey,anger,negative,39,4,3,19,"00:11:11,003","00:11:13,421",dia39_utt4.wav
+412,"You look at me, and its nothin.",Joey,anger,negative,39,5,3,19,"0:11:13,589","0:11:15,258",dia39_utt5.wav
+413,Nothing.,Joey,anger,negative,39,6,3,19,"0:11:15,258","0:11:16,114",dia39_utt6.wav
+422,"Ah, its says so in the script!",Joey,anger,negative,39,15,3,19,"00:11:47,123","00:11:59,467",dia39_utt15.wav
+423,"Y'know ah, I-I dont know why my character likes you either, I mean it says in the script here that youre a bitch.",Joey,anger,negative,39,16,3,19,"00:11:53,295","00:12:02,929",dia39_utt16.wav
+16,You know? Forget it!,Rachel,sadness,negative,1,1,9,23,"00:36:44,368","00:36:46,578",dia1_utt1.wav
+27,Chris says theyre closing down the bar.,Monica,sadness,negative,2,3,3,6,"0:05:57,023","0:05:58,734",dia2_utt3.wav
+31,Got me.,Monica,sadness,negative,2,7,3,6,"00:06:04,489","00:06:07,157",dia2_utt7.wav
+45,"Oh, totally. Oh, God, oh, she seemed so happy too.",Phoebe,sadness,negative,3,8,3,12,"00:10:36,385","00:10:39,137",dia3_utt8.wav
+58,"Listen, Im ah, Im sorry Ive been so crazy and jealous and, its just that I like you a lot, so...",Ross,sadness,negative,4,11,3,11,"00:20:44,284","00:20:53,584",dia4_utt11.wav
+80,Dont go!,Chandler,sadness,negative,6,14,8,22,"0:13:08,202","0:13:08,804",dia6_utt14.wav
+81,Im sorry.,Chandler,sadness,negative,6,15,8,22,"0:13:08,804","0:13:09,526",dia6_utt15.wav
+82,Im so sorry!,Chandler,sadness,negative,6,16,8,22,"0:13:09,526","0:13:10,832",dia6_utt16.wav
+152,"Uh, well... Joey and I broke up.",Charlie,sadness,negative,15,3,9,23,"00:42:26,126","00:42:29,754",dia15_utt3.wav
+154,"Joey is a great guy, but we're just... so different! I mean, during your speech he kept laughing at homo erectus!",Charlie,sadness,negative,15,5,9,23,"00:42:36,053","00:42:44,561",dia15_utt5.wav
+156,"Anyway I just, uh, I think it's for the best.",Charlie,sadness,negative,15,7,9,23,"00:42:46,313","00:42:50,108",dia15_utt7.wav
+158,I guess.,Charlie,sadness,negative,15,9,9,23,"0:42:52,950","0:42:55,208",dia15_utt9.wav
+198,I have to pee. And Rachel's in the bathroom!,Joey,sadness,negative,18,8,5,21,"00:05:30,330","00:05:34,166",dia18_utt8.wav
+281,"Man, this is gonna be kinda weird.",Joey,sadness,negative,26,11,5,18,"00:10:29,920","00:10:35,508",dia26_utt11.wav
+284,"Okay, come on, I can't get married until I get something old, something new, something borrowed, and something blue.",Monica,sadness,negative,27,0,5,24,"00:20:18,592","00:20:24,805",dia27_utt0.wav
+293,"Its worth the pain.  Yknow what, you know what? Its not.",Ross,sadness,negative,28,7,4,15,"00:19:47,728","00:19:50,021",dia28_utt7.wav
+366,What a baby.,Chandler,sadness,negative,36,4,4,22,"0:21:28,287","0:21:28,999",dia36_utt4.wav
+367,Total wuss!,Ross,sadness,negative,36,5,4,22,"0:21:28,999","0:21:30,933",dia36_utt5.wav
+439,I dont think this numbers right!,Monica,sadness,negative,40,13,8,4,"00:05:22,864","00:05:24,448",dia40_utt13.wav
+440,Oh come on!!,Rachel,sadness,negative,40,14,8,4,"00:05:25,908","00:05:28,118",dia40_utt14.wav
+441,"Gotta go. I miss you too, I love you, but it's getting real late now",Mr. Tribbiani,sadness,negative,41,0,1,13,"00:04:41,281","00:04:49,162",dia41_utt0.wav
+471,"Dude, I am sorry about what I said!",Joey,sadness,negative,45,0,4,18,"00:16:58,976","00:17:01,936",dia45_utt0.wav
+522,I couldnt do it.,Chandler,sadness,negative,49,12,6,18,"0:13:40,402","0:13:41,464",dia49_utt12.wav
+540,"Come on man, you-you got to give me a second chance!",Joey,sadness,negative,50,7,6,21,"00:14:27,825","00:14:30,326",dia50_utt7.wav
+551,"Hi. Look um, about what happened earlier...",Rachel,sadness,negative,51,1,3,15,"00:11:10,086","00:11:14,839",dia51_utt1.wav
+583,So forcing her to marry Bobby is gonna make that happen?,Rachel,sadness,negative,54,1,8,10,"00:19:27,291","00:19:29,876",dia54_utt1.wav
+590,Because! Cause Cause youre my baby sister!,Joey,sadness,negative,54,8,8,10,"00:20:07,623","00:20:09,582",dia54_utt8.wav
+596,"Joey, I cant stand the thought of having this baby with you mad at me.",Dina,sadness,negative,54,14,8,10,"00:20:24,306","00:20:28,809",dia54_utt14.wav
+597,I want him to have his uncle.,Dina,sadness,negative,54,15,8,10,"00:20:28,977","00:20:31,938",dia54_utt15.wav
+598,Is my baby gonna have his Uncle Joey?,Dina,sadness,negative,54,16,8,10,"00:20:32,105","00:20:34,523",dia54_utt16.wav
+661,"No. No, not at all, thats-thats ridiculous.",Chandler,sadness,negative,61,5,3,24,"00:21:38,880","00:21:41,465",dia61_utt5.wav
+663,"Ye-ye-yeah, yes I do!",Chandler,sadness,negative,61,7,3,24,"00:21:48,223","00:21:49,557",dia61_utt7.wav
+684,SoIf you wear that youll make mine less special.,Chandler,sadness,negative,63,7,7,20,"00:10:22,663","00:10:26,416",dia63_utt7.wav
+713,"Aw, honey its not your fault, y'know this is who you are, and I love you, and I want us to be friends, and if I keep living here I dont see that happening.",Phoebe,sadness,negative,66,8,3,6,"00:14:58,939","00:15:04,819",dia66_utt8.wav
+716,What? Im just said.,Monica,sadness,negative,66,11,3,6,"00:15:15,497","00:15:16,998",dia66_utt11.wav
+724,"I mean, I mean I was gonna be homeless.",Rachel,sadness,negative,67,6,6,3,"0:08:32,762","0:08:34,389",dia67_utt6.wav
+752,"Yeah, it was really hard.",Phoebe,sadness,negative,69,4,1,5,"00:10:19,076","00:10:20,493",dia69_utt4.wav
+803,You think it looked amazing?,Rachel,sadness,negative,76,7,8,4,"00:19:56,153","00:19:59,280",dia76_utt7.wav
+850,Well what are you gonna do when he finds out he wasnt even asked?!,Monica,sadness,negative,82,4,7,22,"00:03:24,370","00:03:26,914",dia82_utt4.wav
+870,"Oh, wait, Joshua! Joshua!   Yeah, well, that oughta do it.",Rachel,sadness,negative,84,6,4,20,"00:21:22,823","00:21:33,165",dia84_utt6.wav
+887,"Oh, are you sure you're ok?",Rachel,sadness,negative,87,0,1,5,"0:21:55,897","0:21:57,441",dia87_utt0.wav
+889,Does it still hurt?,Rachel,sadness,negative,87,2,1,5,"0:21:58,483","0:22:00,075",dia87_utt2.wav
+890,Yeah.,Ross,sadness,negative,87,3,1,5,"0:22:00,075","0:22:00,532",dia87_utt3.wav
+939,I dont want to lose you.,Joanna,sadness,negative,94,7,4,9,"00:12:01,554","00:12:02,929",dia94_utt7.wav
+1059,"Well, I just checked our messages and Joshua didnt call.",Rachel,sadness,negative,109,6,4,14,"00:14:38,711","00:14:41,963",dia109_utt6.wav
+1060,I mean youd think hed be worried about me not showing up at his club.,Rachel,sadness,negative,109,7,4,14,"00:14:42,131","00:14:45,550",dia109_utt7.wav
+1061,"Ugh, you know what makes it so much worse, Ross is all happy in Vermont!",Rachel,sadness,negative,109,8,4,14,"00:14:45,718","00:14:50,513",dia109_utt8.wav
+1131,"Well, I kinda wanted to sell the cookies. The girl who sells the most wins a trip to Spacecamp, and gets to sit in a",Sarah,sadness,negative,116,2,3,10,"00:04:42,282","00:04:49,788",dia116_utt2.wav
+1136,"No. The one in Atlantic City, Dad loves the slots. He says hes gonna double the college money my Grandma left me.",Sarah,sadness,negative,116,7,3,10,"00:05:08,516","00:05:17,232",dia116_utt7.wav
+1151,"Doesn't matter, I'm never gonna get to meet her anyway.",Joey,sadness,negative,119,4,5,17,"00:14:53,475","00:14:58,354",dia119_utt4.wav
